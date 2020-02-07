@@ -276,6 +276,7 @@ login().then(res==>{
 ![1Uif9H.png](https://s2.ax1x.com/2020/02/03/1Uif9H.png)
 
 在控制台可以看出，我们的请求地址为localhost:9528,而后台服务的的地址为localhost:8886。为啥不一样呢？我们以一流程图说明
+
 ![1UFtKI.png](https://s2.ax1x.com/2020/02/03/1UFtKI.png)
 
 应用程序上线后，对于CORS跨域资源访问的问题，可以用类似的方案（Nginx反向代理）在前端解决。
@@ -316,6 +317,7 @@ login().then(res==>{
 3. 实际效果
 
 业务逻辑正常
+
 ![168XP1.png](https://s2.ax1x.com/2020/02/06/168XP1.png)
 
 业务出错时，弹出服务端给的错误信息。弹出此信息是在拦截器**requerst.js**文件定义的，这是统一的业务逻辑错误处理，也可以在每个请求中单独处理。
