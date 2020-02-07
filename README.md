@@ -1,16 +1,15 @@
 # vue+elementUI 后台管理极简模板
 ## 写在前面
-> 此教程基于 https://github.com/PanJiaChen/vue-admin-template.git
 
 此篇文章为一篇说明文档，不是教你从零构建一个后台管理系统，而是基于一个实际项目，已经搭建好了一个后台管理系统的基础框架，教你如何在此基础上快速开发自己的后台管理系统，能让读者能在掌握一些基础知识的情况下，也能上手vue后台开发。只有接触项目，才能更好地理解自己所学知识的意义，触类旁通把死知识点变成活学活用的技能。
 ## 先跑起来
 ```bash
 # 克隆项目
-git clone https://github.com/PanJiaChen/vue-admin-template.git
+git clone https://github.com/tuture-dev/vue-admin-template.git
 # 进入目录
 cd vue-admin-template
 # 安装依赖
-npm install
+npm install --registry=https://registry.npm.taobao.org
 # 运行
 npm run dev
 ```
@@ -49,6 +48,7 @@ npm run dev
     redirect: '/material/upload',
     meta: {
       title: '素材管理', //元信息，一级导航的名称
+      icon: 'plane' // 元信息，导航图标的名称
     },
     children: [{
         path: 'check-template',
@@ -238,38 +238,51 @@ this.req({
 );
 ```
 按照最佳实践，应该把网络请求统一抽离到单一文件，然后在每个具体的页面进行对服务端数据的处理。
-比如下面的这种形式:
+比如下面的这种形式，首先创建文件**src/api/test.js**，把在**test**组件中需要用到的网络请求都写入此文件。
 
 ```
-// src/api/login.js
+// src/api/test.js
 import request from '@/utils/request'
 
-export function login(data) {
+export function getList(params) {
   return request({
-    url: '/user/login',
-    method: 'post',
-    data
-  })
-}
-
-export function getInfo(token) {
-  return request({
-    url: '/user/info',
+    url: 'getTableData',
     method: 'get',
-    params: { token }
+    params
   })
 }
 
-```
 
 ```
-// src/login/login.vue
-import { login，getInfo } from '@/api/login'
+
+在组件**test.vue**中引入请求方法
+
+```
+import { getTableData } from "@/api/test.js";
 ……
-// 在需要数据时直接调用
-login().then(res==>{
-    console.log("res :", res);
-})
+mounted: function() {
+// 网络请求统一处理
+getTableData().then(res => {
+  console.log("api tableData :", res);
+  this.tableData = res.data;
+},err=>{
+  console.log("err :", err);
+});
+// 网络请求直接写在文件中
+this.req({
+  url: "getTableData",
+  data: {},
+  method: "GET"
+}).then(
+  res => {
+    console.log("tableData :", res);
+    this.tableData = res.data;
+  },
+  err => {
+    console.log("err :", err);
+  }
+);
+},
 ```
 3. 网络数据流
 
@@ -345,4 +358,7 @@ if (to.path === '/user/user') {
 ```
 
 ## 结语
+
 到此后台开发中最常用的操作已经介绍完毕，对于一些小项目已经是绰绰有余。花盆里长不出参天松，庭院里练不出千里马，项目写得多了很多东西就自然而然的通透了。一千个读者就有一千个哈姆雷特，这只是一个基础框架，在开发的过程，需要我们自己对其修改，让它成为你自己最顺手的框架。
+
+> 此项目演绎自： https://github.com/PanJiaChen/vue-admin-template.git

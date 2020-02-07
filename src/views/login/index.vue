@@ -63,7 +63,6 @@
 </template>
 
 <script>
-import { getToken, setToken } from "@/utils/auth"; // get token from cookie
 import md5 from "js-md5";
 export default {
   name: "Login",
@@ -122,8 +121,15 @@ export default {
     handleLogin() {
       let that = this;
       this.loading = true;
-      localStorage.setItem("hasLogin", true);
-      this.$router.push({ path: "/" });
+      //数据格式验证
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          localStorage.setItem("hasLogin", true);
+          this.$router.push({ path: "/" });
+        } else {
+          console.log("验证失败");
+        }
+      });
       return 0;
       // 可自定义登录时的逻辑处理
       this.req({
