@@ -1,12 +1,12 @@
 # vue+elementUI 后台管理极简模板
 ## 写在前面
-> 此项目基于 https://github.com/PanJiaChen/vue-admin-template.git
+> 此教程基于 https://github.com/PanJiaChen/vue-admin-template.git
 
 此篇文章为一篇说明文档，不是教你从零构建一个后台管理系统，而是基于一个实际项目，已经搭建好了一个后台管理系统的基础框架，教你如何在此基础上快速开发自己的后台管理系统，能让读者能在掌握一些基础知识的情况下，也能上手vue后台开发。只有接触项目，才能更好地理解自己所学知识的意义，触类旁通把死知识点变成活学活用的技能。
 ## 先跑起来
 ```bash
 # 克隆项目
-git clone https://github.com/tuture-dev/vue-admin-template.git
+git clone https://github.com/PanJiaChen/vue-admin-template.git
 # 进入目录
 cd vue-admin-template
 # 安装依赖
@@ -276,6 +276,7 @@ login().then(res==>{
 ![1Uif9H.png](https://s2.ax1x.com/2020/02/03/1Uif9H.png)
 
 在控制台可以看出，我们的请求地址为localhost:9528,而后台服务的的地址为localhost:8886。为啥不一样呢？我们以一流程图说明
+
 ![1UFtKI.png](https://s2.ax1x.com/2020/02/03/1UFtKI.png)
 
 应用程序上线后，对于CORS跨域资源访问的问题，可以用类似的方案（Nginx反向代理）在前端解决。
@@ -316,6 +317,7 @@ login().then(res==>{
 3. 实际效果
 
 业务逻辑正常
+
 ![168XP1.png](https://s2.ax1x.com/2020/02/06/168XP1.png)
 
 业务出错时，弹出服务端给的错误信息。弹出此信息是在拦截器**requerst.js**文件定义的，这是统一的业务逻辑错误处理，也可以在每个请求中单独处理。
@@ -343,4 +345,5 @@ if (to.path === '/user/user') {
 ```
 
 ## 结语
+
 到此后台开发中最常用的操作已经介绍完毕，对于一些小项目已经是绰绰有余。花盆里长不出参天松，庭院里练不出千里马，项目写得多了很多东西就自然而然的通透了。一千个读者就有一千个哈姆雷特，这只是一个基础框架，在开发的过程，需要我们自己对其修改，让它成为你自己最顺手的框架。

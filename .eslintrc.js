@@ -30,8 +30,8 @@ module.exports = {
       'before': true,
       'after': true
     }],
-    'block-spacing': [4, 'always'],
-    'brace-style': [4, '1tbs', {
+    'block-spacing': [2, 'always'],
+    'brace-style': [2, '1tbs', {
       'allowSingleLine': true
     }],
     'camelcase': [0, {
